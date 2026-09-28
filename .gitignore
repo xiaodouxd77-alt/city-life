@@ -1,0 +1,47 @@
+# ==================== 后端构建产物 ====================
+target/
+build/
+*.class
+*.jar
+*.war
+
+# ==================== 前端依赖与构建产物 ====================
+node_modules/
+dist/
+unpackage/
+.hbuilderx/
+
+# ==================== 敏感配置（含真实密钥，禁止入库） ====================
+# 真实配置文件保留在本地，仓库仅提供 application.yaml 模板
+src/main/resources/application.yaml
+
+# 本地环境变量 / 配置文件
+*.local
+*.local.*
+.env
+.env.*
+!.env.example
+
+# ==================== 日志 ====================
+*.log
+logs/
+
+# ==================== 工具元数据（本地环境，不入库） ====================
+.reasonix/
+reasonix.toml
+
+# ==================== 系统与编辑器 ====================
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache

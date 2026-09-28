@@ -1,0 +1,75 @@
+/**
+ * 优质生活 App 主题样式变量
+ */
+
+/* 主色调 - 橙色系 */
+$app-primary: #ff6600;
+$app-primary-light: #ff8833;
+$app-primary-bg: #fff5ef;
+
+/* 文字颜色 */
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-hint: #999999;
+$text-disabled: #cccccc;
+
+/* 背景颜色 */
+$bg-color: #f5f5f5;
+$bg-white: #ffffff;
+
+/* 卡片 */
+$card-radius: 16rpx;
+$card-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+
+/* 按钮 */
+$btn-radius: 40rpx;
+$btn-height: 80rpx;
+
+/* uni-app 原生变量覆盖 */
+$uni-color-primary: #ff6600;
+$uni-color-success: #4cd964;
+$uni-color-warning: #f0ad4e;
+$uni-color-error: #dd524d;
+
+$uni-text-color: #333333;
+$uni-text-color-inverse: #ffffff;
+$uni-text-color-grey: #999999;
+$uni-text-color-placeholder: #cccccc;
+$uni-text-color-disable: #cccccc;
+
+$uni-bg-color: #ffffff;
+$uni-bg-color-grey: #f5f5f5;
+$uni-bg-color-hover: #f0f0f0;
+$uni-bg-color-mask: rgba(0, 0, 0, 0.4);
+
+$uni-border-color: #e0e0e0;
+
+$uni-font-size-sm: 22rpx;
+$uni-font-size-base: 28rpx;
+$uni-font-size-lg: 34rpx;
+
+$uni-img-size-sm: 40rpx;
+$uni-img-size-base: 52rpx;
+$uni-img-size-lg: 80rpx;
+
+$uni-border-radius-sm: 8rpx;
+$uni-border-radius-base: 12rpx;
+$uni-border-radius-lg: 16rpx;
+$uni-border-radius-circle: 50%;
+
+$uni-spacing-row-sm: 10rpx;
+$uni-spacing-row-base: 20rpx;
+$uni-spacing-row-lg: 30rpx;
+
+$uni-spacing-col-sm: 8rpx;
+$uni-spacing-col-base: 16rpx;
+$uni-spacing-col-lg: 24rpx;
+
+$uni-opacity-disabled: 0.3;
+
+$uni-color-title: #333333;
+$uni-font-size-title: 36rpx;
+$uni-color-subtitle: #666666;
+$uni-font-size-subtitle: 28rpx;
+$uni-color-paragraph: #666666;
+$uni-font-size-paragraph: 26rpx;

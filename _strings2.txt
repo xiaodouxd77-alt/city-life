@@ -1,0 +1,77 @@
+LOST1	41	 * 优惠券订单业务实现�
+LOST1	43	 * 秒杀链路的关键点�
+OK	44	 * 1. Redis Lua 先原子判断库存和一人一单；
+OK	45	 * 2. RedisIdWorker 生成全局唯一订单号；
+LOST1	47	 * 4. 订单状态机负责支付、取消、核销、退款�
+LOST2	72	        // seckill.lua 放在 resources 下，脚本�Redis 中原子执行，避免并发超卖�
+LOST1	80	    // Redis 不可用时 read 会立即抛异常，退避一下避免忙等刷日志�
+LOST2	83	    // 容器关闭时置�false，消费线程据此退出，不再访问已销毁的连接工厂�
+LOST1	91	        // 启动后台线程消费 Redis Stream 中的秒杀订单消息�
+LOST1	92	        // 当前 seckillVoucher 方法也会同步保存订单，这个线程保留为异步订单处理能力�
+LOST1	97	     * 停止消费线程。先置标志再打断，保证线程不会在连接工厂销毁后继续重试�
+OK	105	    // ==================== Stream 消息处理 ====================
+LOST1	110	         * 循环读取 Redis Stream 秒杀订单消息并创建订单�
+LOST2	116	                    // 以消费者组方式读取 stream.orders，block 最多等�2 秒�
+OK	137	                    log.error("处理订单异常", e);
+LOST1	139	                    // Redis 不可用时 read 会立刻抛异常，退避一下再进入下一轮�
+LOST1	143	            log.info("秒杀订单消费线程已退�");
+LOST2	147	         * 补偿处理 Redis Stream 中已投递但�ACK 的订单消息�
+LOST1	149	         * 读取失败时立即返回，把重试退避交给主循环，避免在这里无休止重试刷日志�
+LOST2	154	                    // pending-list 保存“已经投递给消费者，但消费者还�ACK”的消息�
+LOST1	170	                    log.warn("处理pending订单异常，本轮补偿结�", e);
+LOST2	178	     * 异常后的短暂退避，�shutdownNow 打断时直接标记退出�
+LOST1	190	     * 创建秒杀订单，使用用户维度分布式锁和数据库校验防止重复下单�
+OK	199	            log.error("不允许重复下单！");
+LOST1	203	            // 数据库层再查一次，一人一单最终以 MySQL 中是否存在订单为准�
+OK	206	                log.error("不允许重复下单！");
+LOST1	209	            // 数据库扣库存使用 stock > 0 条件，防止数据库层出现负库存�
+LOST1	215	                log.error("库存不足�");
+LOST1	218	            // 默认状态为待支�
+OK	227	    // ==================== 秒杀下单 ====================
+LOST1	230	     * 秒杀下单，先通过 Lua 原子校验库存和一人一单，再创建订单�
+LOST0	245	            return Result.fail(r == 1 ? "��治��" : "�����ظ��µ�");
+LOST0	253	            return Result.fail("��������ʧ�ܣ����Ժ�����");
+LOST3	255	        // 订单�Stream 消费者异步落库，避免高并发请求直接竞�MySQL�
+LOST2	256	        // �String 返回避免 JS 长整型精度丢失�
+OK	260	    // ==================== 普通券直接购买 ====================
+LOST1	263	     * 普通优惠券购买，校验优惠券存在和一人一券后创建待支付订单�
+OK	268	        // 检查优惠券是否存在
+OK	271	            return Result.fail("优惠券不存在");
+OK	273	        // 一人一券，检查是否已购买
+LOST1	276	            return Result.fail("您已领取过该优惠�");
+OK	278	        // 直接创建订单
+LOST1	285	        order.setStatus(1); // 待支�
+LOST2	287	        // �String 返回避免 JS 长整型精度丢�
+OK	291	    // ==================== 订单生命周期 ====================
+LOST1	293	    // 状态常�
+LOST1	302	     * 支付订单，校验订单归属和状态后生成核销码并标记为已支付�
+LOST0	309	            return Result.fail("����������");
+LOST0	312	            return Result.fail("��Ȩ�����˶���");
+LOST0	315	            return Result.fail("����״̬����ȷ���޷�֧��");
+LOST0	319	            return Result.fail("���������Ч");
+LOST1	363	            return Result.fail("订单不存�");
+LOST1	366	            return Result.fail("无权操作此订�");
+LOST1	369	            return Result.fail("订单状态不正确，无法支�");
+OK	371	        // 模拟支付
+LOST1	380	        return Result.ok("支付成功，核销� " + verifyCode);
+LOST1	391	            return Result.fail("订单不存�");
+LOST1	394	            return Result.fail("无权操作此订�");
+LOST1	397	            return Result.fail("只有待支付订单可以取�");
+LOST1	402	        // 秒杀订单取消后恢复库�
+LOST1	408	     * 核销已支付订单，校验核销码后标记订单为已使用�
+LOST1	414	            return Result.fail("订单不存�");
+OK	417	            return Result.fail("订单状态不正确，无法核销");
+LOST1	420	            return Result.fail("核销码错�");
+LOST1	441	            return Result.fail("订单不存�");
+LOST1	444	            return Result.fail("无权操作此订�");
+LOST1	447	            return Result.fail("只有已支付未核销的订单可以退�");
+LOST1	450	            return Result.fail("积分兑换券暂不支持退�");
+OK	452	        // 标记退款中
+LOST1	464	        // 退款完�
+LOST3	473	     * 如果订单对应秒杀券，则同时恢�Redis �MySQL 库存�
+OK	489	    // ==================== 订单查询 ====================
+LOST1	513	     * 查询当前登录用户的订单详情，并补充关联优惠券信息�
+LOST1	520	            return Result.fail("订单不存�");
+LOST1	523	            return Result.fail("无权查看此订�");
+OK	525	        // 查询关联的优惠券信息
+LOST1	535	        result.put("voucherTitle", voucher != null ? voucher.getTitle() : "未知优惠�");

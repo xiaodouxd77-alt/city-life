@@ -1,0 +1,11 @@
+170	                    log.warn("处理pending订单异常，本轮补偿结�", e);   <<<LOST1
+276	            return Result.fail("您已领取过该优惠�");   <<<LOST1
+366	            return Result.fail("无权操作此订�");   <<<LOST1
+380	        return Result.ok("支付成功，核销� " + verifyCode);   <<<LOST1
+394	            return Result.fail("无权操作此订�");   <<<LOST1
+397	            return Result.fail("只有待支付订单可以取�");   <<<LOST1
+444	            return Result.fail("无权操作此订�");   <<<LOST1
+447	            return Result.fail("只有已支付未核销的订单可以退�");   <<<LOST1
+450	            return Result.fail("积分兑换券暂不支持退�");   <<<LOST1
+523	            return Result.fail("无权查看此订�");   <<<LOST1
+535	        result.put("voucherTitle", voucher != null ? voucher.getTitle() : "未知优惠�");   <<<LOST1

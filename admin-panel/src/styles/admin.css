@@ -1,0 +1,96 @@
+/* ===== 统一后台管理样式 ===== */
+:root {
+  --page-bg: #f0f2f5;
+  --card-radius: 10px;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --brand: #409eff;
+}
+
+/* 页面容器 */
+.page {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 页头 */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.page-header .page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2d3d;
+  margin: 0;
+}
+.page-header .page-subtitle {
+  font-size: 13px;
+  color: #909399;
+  margin: 4px 0 0;
+}
+
+/* 主卡片 */
+.page-card {
+  border-radius: var(--card-radius) !important;
+  box-shadow: var(--card-shadow) !important;
+  border: none !important;
+}
+
+/* 工具栏：搜索 + 操作按钮 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.toolbar .toolbar-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.toolbar .search-input {
+  width: 260px;
+}
+
+/* 表格圆角 */
+.page-card .el-table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 分页栏 */
+.pager {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+/* 表格内缩略图 */
+.cell-thumb {
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  background: #f5f7fa;
+}
+.cell-thumb-empty {
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  color: #c0c4cc;
+  font-size: 20px;
+}

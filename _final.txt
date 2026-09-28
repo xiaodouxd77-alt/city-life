@@ -1,0 +1,32 @@
+137	SKIP(clean)	                    log.error("处理订单异常", e);
+143	OK(lost1)	<?><LOST>");
+170	OK(lost1)	<?><LOST>", e);
+199	SKIP(clean)	            log.error("不允许重复下单！");
+206	SKIP(clean)	                log.error("不允许重复下单！");
+215	OK(lost1)	<?><LOST>");
+245	OK(lost0)	<?>
+253	OK(lost0)	<?>
+271	SKIP(clean)	            return Result.fail("优惠券不存在");
+276	OK(lost1)	<?><LOST>");
+309	OK(lost0)	<?>
+312	OK(lost0)	<?>
+315	OK(lost0)	<?>
+319	OK(lost0)	<?>
+343	OK(lost0)	<?>
+363	OK(lost1)	<?><LOST>");
+366	OK(lost1)	<?><LOST>");
+369	OK(lost1)	<?><LOST>");
+380	OK(lost1)	<?><LOST> " + verifyCode);
+391	OK(lost1)	<?><LOST>");
+394	OK(lost1)	<?><LOST>");
+397	OK(lost1)	<?><LOST>");
+414	OK(lost1)	<?><LOST>");
+417	SKIP(clean)	            return Result.fail("订单状态不正确，无法核销");
+420	OK(lost1)	<?><LOST>");
+441	OK(lost1)	<?><LOST>");
+444	OK(lost1)	<?><LOST>");
+447	OK(lost1)	<?><LOST>");
+450	OK(lost1)	<?><LOST>");
+520	OK(lost1)	<?><LOST>");
+523	OK(lost1)	<?><LOST>");
+535	OK(lost1)	<?><LOST>");
